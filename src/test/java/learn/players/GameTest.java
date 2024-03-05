@@ -29,8 +29,66 @@ class GameTest {
         // assert
         assertNotNull(result);
         assertEquals(String.format("You both picked %s -- its a tie!",PlayerHelper.SCISSORS),result);
-
     }
+
+    @Test
+    void scissorsShouldBeatPaper(){
+        // arranging
+        String result = game.determineWinner(PlayerHelper.SCISSORS, PlayerHelper.PAPER);
+        // assert
+        assertNotNull(result);
+        assertEquals(String.format("The computer picked %s and you picked %s, you WIN 😁🎉",PlayerHelper.PAPER, PlayerHelper.SCISSORS),result);
+    }
+
+    @Test
+    void paperShouldBeatRock(){
+        // arranging
+        String result = game.determineWinner(PlayerHelper.PAPER, PlayerHelper.ROCK);
+        // assert
+        assertNotNull(result);
+        assertEquals(String.format("The computer picked %s and you picked %s, you WIN 😁🎉",PlayerHelper.ROCK, PlayerHelper.PAPER),result);
+    }
+
+    @Test
+    void rockShouldBeatScissor(){
+        // arranging
+        String result = game.determineWinner(PlayerHelper.ROCK, PlayerHelper.SCISSORS);
+        // assert
+        assertNotNull(result);
+        assertEquals(String.format("The computer picked %s and you picked %s, you WIN 😁🎉",PlayerHelper.SCISSORS, PlayerHelper.ROCK),result);
+    }
+
+    // unhappy path - lost  condition are working fine
+
+    @Test
+    void scissorShouldNotBeatRock(){
+        // arranging
+        String result = game.determineWinner(PlayerHelper.SCISSORS, PlayerHelper.ROCK);
+        // assert
+        assertNotNull(result);
+        assertEquals(String.format("The computer picked %s and you picked %s, you LOSE 😒",PlayerHelper.ROCK, PlayerHelper.SCISSORS),result);
+    }
+
+    @Test
+    void rockShouldNotBeatPaper(){
+        // arranging
+        String result = game.determineWinner(PlayerHelper.ROCK, PlayerHelper.PAPER);
+        // assert
+        assertNotNull(result);
+        assertEquals(String.format("The computer picked %s and you picked %s, you LOSE 😒",PlayerHelper.PAPER, PlayerHelper.ROCK),result);
+    }
+
+    @Test
+    void paperShouldNotBeatScissor(){
+        // arranging
+        String result = game.determineWinner(PlayerHelper.PAPER, PlayerHelper.SCISSORS);
+        // assert
+        assertNotNull(result);
+        assertEquals(String.format("The computer picked %s and you picked %s, you LOSE 😒",PlayerHelper.SCISSORS, PlayerHelper.PAPER),result);
+    }
+
+
+
 
 
 
