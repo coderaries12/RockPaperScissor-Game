@@ -1,8 +1,12 @@
 package learn.players;
 
+import java.util.Random;
+
 public class Computer implements Player {
     @Override
     public String generateMove() {
-        return null;
+        Random random = new Random();
+        int choice = random.nextInt(3) + 1;  // bound 3 will return 0
+        return PlayerHelper.getPlayerMove(choice);
     }
 }
